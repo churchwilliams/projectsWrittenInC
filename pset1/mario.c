@@ -3,7 +3,7 @@
 
 /* 
     This program:
-    1) PPROMPTS user for a positive integer (n) which must be less than 24
+    1) PROMPTS user for a positive integer (n) which must be less than 24
     2) CONSTRUCTS a half-pyramid with n rows composed of hash symbols
     3) PRINTS said half-pyramid to the termianl
     
