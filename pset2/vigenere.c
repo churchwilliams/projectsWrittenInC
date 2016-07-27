@@ -43,31 +43,42 @@ int main(int argc, string argv[])
     }
     
     // char lowerABC[26] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-    
-    int shiftValue = k[0] - 97;
-    printf("%c is the FIRST iterator, with shift value %i\n", k[0], shiftValue);
-    
-    
-    
-    
+
 // get PLAIN text input from user (p)
     
     string p = GetString();
+    int pLength = strlen(p);
+    
+    int kLength = strlen(k);
+    
+    int shiftValue;
+    for (int i = 0; i < kLength; i++)
+    {
+        if (islower(k[i]))
+        {
+            shiftValue = (k[i] - 97) % pLength;
+        }
+        else
+        {
+            shiftValue = k[i] - 65;
+        }
+        
+        printf("%c is the %i iterator, with shift value %i\n", k[i], i ,shiftValue);
+        
+    }
     
     
 // ENCRYPTION algorithm and output (should wrap this up in a function)
-    
-    // int n = strlen(p);
     // char upperABC[26] = {'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V','W','X','Y','Z','A','B','C','D','E','F','G','H','I','J','K','L','M'};
     // char lowerABC[26] = {'h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','a','b','c','d','e','f','g'};
-    // for(int i = 0; i < n; i++)
+    // for(int i = 0; i < pLength; i++)
     // {
     //     if (isalpha(p[i]))
     //     { 
             
     //         if (isupper(p[i]))
     //         {
-    //             int finalKey = (p[i] + k) % 26;
+    //             int finalKey = ('p[i]' + k) % 26;
             
     //             p[i] = upperABC[finalKey];
     //         }
