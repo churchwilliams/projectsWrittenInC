@@ -17,22 +17,32 @@
  */
 bool search(int value, int values[], int n)
 {
-    // TODO: implement a searching algorithm
-    if (n < 1)
-    {
-        return false;
-    }
-    else
-    {
-        for (int i = 0; i < n; i++)
-        {
-            if (value == values[i])
-            {
-                return true;
-            }
-        }
-    }
-    return false;
+    // TODO: implement a BINARY search algorithm
+
+    int low = 0, high = n - 1, currentIndex;
+    
+    while (low <= high)
+   {
+       currentIndex = (high + low) /2;
+       if (value == values[currentIndex])
+       {     
+           printf("%i is in position arr[%i]!\n", value, currentIndex);
+           return 1;
+       }
+       else if (value < values[currentIndex])
+       {
+            printf("%i is in the LOOWER half!\n", value);
+            high = currentIndex - 1;
+       }
+       else
+       {
+            printf("%i is in the UPPER half!\n", value);
+            low = currentIndex + 1;
+       }
+   }
+   return 0;
+
+
 }
 
 /**
