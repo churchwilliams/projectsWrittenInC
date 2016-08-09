@@ -6,7 +6,7 @@ int main(void)
     int arr[10] = {0,1,2,3,4,5,6,7,8,9};
     
     int n = 10;
-    int value = 5;
+    int value = 2;
     
     
     while (n != 1)
@@ -19,11 +19,13 @@ int main(void)
         }
         else if (value < arr[n/2])
         {
+            //break off the FIRST half of the array.
+            printf("it's in the FIRST half\n");
             n = n/2;
-            
         }
         else if (value > arr[n/2])
         {
+            printf("it's in the SECOND half\n");
             n = n/2;
         }
     }
