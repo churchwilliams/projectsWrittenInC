@@ -160,6 +160,51 @@ void greet(void)
 void init(void)
 {
     // TODO
+    int highestNum = (d * d) - 1;
+    
+    for (int i = 0; i < d; i++)     //columns
+    {
+        for (int j = 0; j < d; j++) //rows
+        {
+            if (j == 0)
+            {
+                board[i][j] = highestNum;
+            }
+            else if (j == 1)
+            {
+                board[i][j] = highestNum - d;
+            }
+            else if (j == 2)
+            {
+                board[i][j] = highestNum - d*2;
+            }
+            else if (j == 3)
+            {
+                board[i][j] = highestNum - d*3;
+            }
+            else if (j == 4)
+            {
+                board[i][j] = highestNum - d*4;
+            }
+            else if (j == 5)
+            {
+                board[i][j] = highestNum - d*5;
+            }
+            else if (j == 6)
+            {
+                board[i][j] = highestNum - d*6;
+            }
+            else if (j == 7)
+            {
+                board[i][j] = highestNum - d*7;
+            }
+            else if (j == 8)
+            {
+                board[i][j] = highestNum - d*8;
+            }
+        }
+        highestNum--;
+    }
 }
 
 /**
@@ -168,6 +213,13 @@ void init(void)
 void draw(void)
 {
     // TODO
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            printf("column %i row %i = %i\n", i, j, board[i][j]);
+        }
+    }
 }
 
 /**
