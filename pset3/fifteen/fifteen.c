@@ -164,46 +164,17 @@ void init(void)
     
     for (int i = 0; i < d; i++)     //columns
     {
-        for (int j = 0; j < d; j++) //rows
+        for (int j = 0; j < d; j++)
         {
-            if (j == 0)
-            {
-                board[i][j] = highestNum;
-            }
-            else if (j == 1)
-            {
-                board[i][j] = highestNum - d;
-            }
-            else if (j == 2)
-            {
-                board[i][j] = highestNum - d*2;
-            }
-            else if (j == 3)
-            {
-                board[i][j] = highestNum - d*3;
-            }
-            else if (j == 4)
-            {
-                board[i][j] = highestNum - d*4;
-            }
-            else if (j == 5)
-            {
-                board[i][j] = highestNum - d*5;
-            }
-            else if (j == 6)
-            {
-                board[i][j] = highestNum - d*6;
-            }
-            else if (j == 7)
-            {
-                board[i][j] = highestNum - d*7;
-            }
-            else if (j == 8)
-            {
-                board[i][j] = highestNum - d*8;
-            }
+            board[i][j] = highestNum;
+            highestNum--;
         }
-        highestNum--;
+    }
+    
+    if (d % 2 == 0)
+    {
+        board[d-1][d-2] = 2;
+        board[d-1][d-3] = 1;
     }
 }
 
@@ -212,13 +183,25 @@ void init(void)
  */
 void draw(void)
 {
-    // TODO
     for (int i = 0; i < d; i++)
     {
+        
         for (int j = 0; j < d; j++)
         {
-            printf("column %i row %i = %i\n", i, j, board[i][j]);
+            if (board[i][j] == 0)
+            {
+                printf("   |");
+            }
+            else if (board[i][j] < 10 )
+            {
+                printf("%2d |", board[i][j]);
+            }
+            else
+            {
+                printf("%i |", board[i][j]);
+            }
         }
+        printf("\n\n");
     }
 }
 
@@ -229,6 +212,55 @@ void draw(void)
 bool move(int tile)
 {
     // TODO
+    
+    // find ZERO's location
+    int zeroI;
+    int zeroJ;
+    
+    int tileI;
+    int tileJ;
+    
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (board[i][j] == 0)
+            {
+                zeroI = i;
+                zeroJ = j;
+                break;
+            }
+        }
+    }
+
+    //find TILE location
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (board[i][j] == tile)
+            {
+                tileI = i;
+                tileJ = j;
+            }
+        }
+    }
+    
+    if ((tileI + 1 == zeroI || tileI - 1 == zeroI) && (tileJ + 1 == zeroJ || tileJ - 1 == zeroJ))
+    {
+        return false;
+    }
+    
+    else if (tileI == zeroI || tileI + 1 == zeroI || tileI - 1 == zeroI)
+    {
+        if (tileJ == zeroJ || tileJ + 1 == zeroJ || tileJ - 1 == zeroJ)
+        {
+            board[zeroI][zeroJ] = tile;
+            board[tileI][tileJ] = 0;
+            
+            return true;
+        }
+    }
     return false;
 }
 
@@ -238,6 +270,29 @@ bool move(int tile)
  */
 bool won(void)
 {
+    int counter = 0;
+    
     // TODO
+    if (board[d-1][d-1] == 0 && board[d-1][d-2] == d * d - 1)
+    {
+    
+        for (int i = 0; i < d; i++)
+        {
+            for (int j = 0; j < d; j++)
+                
+                if (counter == d * d - 1){
+                    return true;
+                }
+                
+                else if (board[i][j] == counter + 1)
+                {   
+                    counter++;
+                }
+                else if (board[i][j] != counter + 1)
+                {
+                    return false;
+                }
+            }
+        }   
     return false;
 }
