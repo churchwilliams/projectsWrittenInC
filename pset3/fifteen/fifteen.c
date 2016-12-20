@@ -45,7 +45,7 @@ int main(int argc, string argv[])
     // ensure proper usage
     if (argc != 2)
     {
-        printf("Usage: fifteen d\n");
+        printf("You gotta type in how many ROWS you want!\n");
         return 1;
     }
 
